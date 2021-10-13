@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,8 +15,9 @@ public class Grapple : MonoBehaviour
     public int maxPoints = 3;
 
     private Input _input;
+    private Movement _movement;
 
-    private Vector2 _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
+    private Vector2 _mousePos;
     
     private Rigidbody2D _rigidbody2D;
     private List<Vector2> points = new List<Vector2>();
@@ -23,6 +25,7 @@ public class Grapple : MonoBehaviour
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
+        _movement = GetComponent<Movement>();
         lr.positionCount = 0;
     }
 
@@ -30,14 +33,17 @@ public class Grapple : MonoBehaviour
     void Update()
     {
         _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
-        if (_input.grapple)
+        print("yo i can read this btw");
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
+            print("grapple registered");
             Vector2 mousePos = cam.ScreenToWorldPoint(_mousePos);
             Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
 
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, grappleLength, grappleMask);
             if (hit.collider != null)
             {
+                print("hit collider is not null");
                 Vector2 hitPoint = hit.point;
                 points.Add(hitPoint);
 
@@ -50,8 +56,12 @@ public class Grapple : MonoBehaviour
 
         if (points.Count > 0)
         {
+            _movement.isGrappling = true;
             Vector2 moveTo = centriod(points.ToArray());
-            _rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
+            //_rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
+            Vector2 rotation = (moveTo - (Vector2)transform.position).normalized;
+            _rigidbody2D.AddForce(rotation, ForceMode2D.Impulse);
+            print(_rigidbody2D.velocity);
 
             lr.positionCount = 0;
             lr.positionCount = points.Count * 2;
@@ -61,8 +71,12 @@ public class Grapple : MonoBehaviour
                 lr.SetPosition(n+1, points[j]);
             }
         }
+        else
+        {
+            _movement.isGrappling = false;
+        }
 
-        if(_input.detatch)
+        if(Keyboard.current.leftCtrlKey.wasPressedThisFrame)
         {
             Detatch();
         }
