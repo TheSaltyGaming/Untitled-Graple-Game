@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class Input : MonoBehaviour
 {
@@ -9,7 +10,9 @@ public class Input : MonoBehaviour
     [HideInInspector] public bool grapple;
     //[HideInInspector] public bool quit;
     [HideInInspector] public bool restart;
+    [HideInInspector] public bool detatch;
     
+
     private void Update()
     {
         moveVector.x = (Keyboard.current.aKey.isPressed ? -1f : 0f) + (Keyboard.current.dKey.isPressed ? 1f : 0f);
@@ -20,11 +23,12 @@ public class Input : MonoBehaviour
             moveVector = moveVector.normalized;
         }
         
-        dash = Keyboard.current.spaceKey.wasPressedThisFrame;
+        dash = Keyboard.current.leftShiftKey.wasPressedThisFrame;
         interact = Keyboard.current.fKey.wasPressedThisFrame;
-        attack = Keyboard.current.kKey.wasPressedThisFrame;
-
-        quit = Keyboard.current.escapeKey.wasPressedThisFrame;
+        grapple = Mouse.current.leftButton.wasPressedThisFrame;
+        detatch = Keyboard.current.spaceKey.wasPressedThisFrame;
+        
+        
         restart = Keyboard.current.rKey.wasPressedThisFrame;
     }
 }
