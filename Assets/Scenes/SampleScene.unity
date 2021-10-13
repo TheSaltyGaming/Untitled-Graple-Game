@@ -467,7 +467,7 @@ MonoBehaviour:
     m_Bits: 64
   moveSpeed: 0.2
   grappleLength: 20.17
-  maxPoints: 3
+  maxPoints: 1
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
