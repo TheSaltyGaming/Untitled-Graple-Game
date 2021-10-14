@@ -16,6 +16,7 @@ public class Grapple : MonoBehaviour
 
     private Input _input;
     private Movement _movement;
+    private Collision _collision;
 
     private Vector2 _mousePos;
     
@@ -26,6 +27,7 @@ public class Grapple : MonoBehaviour
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _movement = GetComponent<Movement>();
+        _collision = GetComponent<Collision>();
         lr.positionCount = 0;
     }
 
@@ -61,7 +63,6 @@ public class Grapple : MonoBehaviour
             //_rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
             Vector2 rotation = (moveTo - (Vector2)transform.position).normalized;
             _rigidbody2D.AddForce(rotation, ForceMode2D.Impulse);
-            print(_rigidbody2D.velocity);
 
             lr.positionCount = 0;
             lr.positionCount = points.Count * 2;
@@ -86,6 +87,8 @@ public class Grapple : MonoBehaviour
     {
         lr.positionCount = 0;
         points.Clear();
+        //_rigidbody2D.AddRelativeForce(_rigidbody2D.velocity, ForceMode2D.Impulse);
+        _movement.justGrappled = true;
     }
 
     Vector2 centriod(Vector2[] points)

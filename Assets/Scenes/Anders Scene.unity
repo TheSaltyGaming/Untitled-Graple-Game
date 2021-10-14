@@ -630,10 +630,10 @@ MonoBehaviour:
   m_Priority: 10
   m_StandbyUpdate: 2
   m_LookAt: {fileID: 784136131}
-  m_Follow: {fileID: 0}
+  m_Follow: {fileID: 784136131}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 9.03
+    OrthographicSize: 12.34
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -657,7 +657,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649612863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5842152, y: 0.47669974, z: -12.687012}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 603553646}
@@ -940,7 +940,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   moveSpeed: 2
-  grappleLength: 10
+  grappleLength: 20
   maxPoints: 1
 --- !u!114 &784136135
 MonoBehaviour:
@@ -1055,7 +1055,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.03
+  orthographic size: 12.34
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1079,7 +1079,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 969870553}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5842152, y: 0.47669974, z: -12.687012}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

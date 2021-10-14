@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 10f;
     [SerializeField] private float downSpeed = 4f;
-    [SerializeField] private float maxVelocity = -24f;
+    [SerializeField] private float maxVelocity = 24f;
 
     /* COMPONENTS */
     private Input _Input;
@@ -30,6 +30,7 @@ public class Movement : MonoBehaviour
     [HideInInspector] public bool canCoyote;
 
     [HideInInspector] public bool isGrappling;
+    [HideInInspector] public bool justGrappled;
 
     private void Start()
     {
@@ -53,6 +54,7 @@ public class Movement : MonoBehaviour
             canCoyote = true;
             jumps = baseJumps;
             coyoteTimeCounter = coyoteTime;
+            justGrappled = false;
         }
         else if (_Rigidbody2D.velocity.y <= 0)
         {
@@ -100,16 +102,12 @@ public class Movement : MonoBehaviour
         }
     }
 
-    /*private void FixedUpdate()
+    private void FixedUpdate()
     {
-        if (isGrappling)
-        {
-            return;
-        }
-        _Rigidbody2D.velocity = 
-            new Vector2(_Input.moveVector.x * moveSpeed, _Rigidbody2D.velocity.y);
+        if (justGrappled || isGrappling) return;
+        _Rigidbody2D.velocity = new Vector2(_Input.moveVector.x * moveSpeed, _Rigidbody2D.velocity.y);
     }
-    */
+    
     /*private void DownDash()
     {
         if (_Input.downDash)
