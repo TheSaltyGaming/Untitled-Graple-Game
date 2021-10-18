@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class Collision : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsDeath;
-    [SerializeField] private LayerMask whatIsGround;
+    public LayerMask whatIsGround;
     [SerializeField] private float groundCheckDistance = 1.1f;
 
     private void OnTriggerEnter2D(Collider2D other)

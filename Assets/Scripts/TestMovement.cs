@@ -27,6 +27,12 @@ public class TestMovement : MonoBehaviour
     [SerializeField] float recoilYSpeed = 45;
     [Space(5)]
     
+    [Header("Roof Checking")]
+    [SerializeField] Transform roofTransform; //This is supposed to be a transform childed to the player just above their collider.
+    [SerializeField] float roofCheckY = 0.2f;
+    [SerializeField] float roofCheckX = 1; // You probably want this to be the same as groundCheckX
+    [Space(5)]
+    
     
     float xAxis;
     float yAxis;
@@ -57,6 +63,7 @@ public class TestMovement : MonoBehaviour
         Walk(xAxis);
         Recoil();
         GetInputs();
+        Jump();
     }
     
     void FixedUpdate()
@@ -82,16 +89,18 @@ public class TestMovement : MonoBehaviour
             StopRecoilY();
         }
  
-        Jump();
+        //Jump();
     }
 
     void Jump()
     {
+        print("jump");
         if (pState.jumping)
         {
-
-            if (stepsJumped < jumpSteps)
+            print("jumpisbringregistered");
+            if (stepsJumped < jumpSteps && !Roofed())
             {
+                print("this IS IN SANE");
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 stepsJumped++;
             }
@@ -206,19 +215,64 @@ public class TestMovement : MonoBehaviour
         stepsYRecoiled = 0;
         pState.recoilingY = false;
     }
+    
+    public bool Roofed()
+    {
+        //This does the same thing as grounded but checks if the players head is hitting the roof instead.
+        //Used for canceling the jump.
+        if (Physics2D.Raycast(roofTransform.position, Vector2.up, roofCheckY, _collision.whatIsGround) || Physics2D.Raycast(roofTransform.position + new Vector3(roofCheckX, 0), Vector2.up, roofCheckY, _collision.whatIsGround) || Physics2D.Raycast(roofTransform.position + new Vector3(roofCheckX, 0), Vector2.up, roofCheckY, _collision.whatIsGround))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 
     void GetInputs()
     {
+        yAxis = _input.moveVector.y;
+        xAxis = _input.moveVector.x;
+ 
+        //This is essentially just sensitivity.
+        if (yAxis > 0.25)
+        {
+            yAxis = 1;
+        }
+        else if (yAxis < -0.25)
+        {
+            yAxis = -1;
+        }
+        else
+        {
+            yAxis = 0;
+        }
+ 
+        if (xAxis > 0.25)
+        {
+            xAxis = 1;
+        }
+        else if (xAxis < -0.25)
+        {
+            xAxis = -1;
+        }
+        else
+        {
+            xAxis = 0;
+        }
+        print("this is testing but running");
         if (_input.jump && _collision.IsGrounded())
         {
+            print("wtd is happening");
             pState.jumping = true;
         }
 
-        if (_input.jump && stepsJumped < jumpSteps && stepsJumped > jumpThreshold && pState.jumping)
+        if (!_input.jump && stepsJumped < jumpSteps && stepsJumped > jumpThreshold && pState.jumping)
         {
             StopJumpQuick();
         }
-        else if (_input.jump && stepsJumped < jumpThreshold && pState.jumping)
+        else if (!_input.jump && stepsJumped < jumpThreshold && pState.jumping)
         {
             StopJumpSlow();
         }

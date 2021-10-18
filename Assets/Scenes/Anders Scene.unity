@@ -810,6 +810,8 @@ GameObject:
   - component: {fileID: 784136136}
   - component: {fileID: 784136135}
   - component: {fileID: 784136134}
+  - component: {fileID: 784136139}
+  - component: {fileID: 784136138}
   m_Layer: 0
   m_Name: Player2
   m_TagString: Untagged
@@ -949,7 +951,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 784136129}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f13df1eba5b6ad429ca84b91e53ef8d, type: 3}
   m_Name: 
@@ -962,6 +964,7 @@ MonoBehaviour:
   coyoteTime: 0.5
   canCoyote: 0
   isGrappling: 0
+  justGrappled: 0
 --- !u!114 &784136136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1000,6 +1003,57 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  groundCheckDistance: 1.1
+--- !u!114 &784136138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784136129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf8fbef9fba9b34bb49bb6f4aa29201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pState: {fileID: 784136139}
+  walkSpeed: 25
+  jumpSpeed: 45
+  fallSpeed: 45
+  jumpSteps: 20
+  jumpThreshold: 7
+  recoilXSteps: 4
+  recoilYSteps: 10
+  recoilXSpeed: 45
+  recoilYSpeed: 45
+  roofTransform: {fileID: 0}
+  roofCheckY: 0.2
+  roofCheckX: 1
+--- !u!114 &784136139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 784136129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c32082453b9a0724f877e8f27d3bbeec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walking: 0
+  interact: 0
+  interacting: 0
+  lookingRight: 0
+  jumping: 0
+  recoilingX: 0
+  recoilingY: 0
+  casting: 0
+  castReleased: 0
+  onBench: 0
+  atBench: 0
+  atNPC: 0
+  usingNPC: 0
 --- !u!1 &969870553
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,7 +4464,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 94425195
-  m_SortingLayer: -2
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
