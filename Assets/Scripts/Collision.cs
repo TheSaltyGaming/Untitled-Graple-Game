@@ -8,6 +8,7 @@ public class Collision : MonoBehaviour
 {
     [SerializeField] private LayerMask whatIsDeath;
     [SerializeField] private LayerMask whatIsGround;
+    [SerializeField] private float groundCheckDistance = 1.1f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,7 +29,7 @@ public class Collision : MonoBehaviour
     public bool IsGrounded()
     {
         Debug.DrawRay(transform.position, Vector2.down, new Color(1f, 0f, 1f));
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, whatIsGround);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, groundCheckDistance, whatIsGround);
         return hit.collider != null;
     }
 }
