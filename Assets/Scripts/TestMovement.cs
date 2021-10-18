@@ -14,5 +14,7 @@ public class TestMovement : MonoBehaviour
     [SerializeField] float fallSpeed = 45;
     [SerializeField] int jumpSteps = 20;
     [SerializeField] int jumpThreshold = 7;
-    [Space(5)]
+    [Space(5)] 
+    
+    private bool test;
 }
