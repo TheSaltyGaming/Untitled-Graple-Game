@@ -11,12 +11,14 @@ public class Grapple : MonoBehaviour
     public LayerMask grappleMask;
     public float moveSpeed = 2;
     public float grappleLength = 5;
+    [SerializeField] private float grappleSpeedDivide = 2;
     [Min(1)]
     public int maxPoints = 3;
 
     private Input _input;
     private Movement _movement;
     private Collision _collision;
+    private PlayerStateList pstate; 
 
     private Vector2 _mousePos;
     
@@ -28,12 +30,18 @@ public class Grapple : MonoBehaviour
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _movement = GetComponent<Movement>();
         _collision = GetComponent<Collision>();
+        pstate = GetComponent<PlayerStateList>();
         lr.positionCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (_collision.IsGrounded())
+        {
+            pstate.justGrappled = false;
+        }
+        
         _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
         print("yo i can read this btw");
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -58,11 +66,11 @@ public class Grapple : MonoBehaviour
 
         if (points.Count > 0)
         {
-            _movement.isGrappling = true;
+            pstate.isGrappling = true;
             Vector2 moveTo = centriod(points.ToArray());
             //_rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
             Vector2 rotation = (moveTo - (Vector2)transform.position).normalized;
-            _rigidbody2D.AddForce(rotation, ForceMode2D.Impulse);
+            _rigidbody2D.AddForce(rotation / grappleSpeedDivide, ForceMode2D.Impulse);
 
             lr.positionCount = 0;
             lr.positionCount = points.Count * 2;
@@ -74,10 +82,10 @@ public class Grapple : MonoBehaviour
         }
         else
         {
-            _movement.isGrappling = false;
+            pstate.isGrappling = false;
         }
 
-        if(Keyboard.current.leftCtrlKey.wasPressedThisFrame)
+        if(Keyboard.current.spaceKey.wasPressedThisFrame && pstate.isGrappling)
         {
             Detatch();
         }
@@ -88,7 +96,7 @@ public class Grapple : MonoBehaviour
         lr.positionCount = 0;
         points.Clear();
         //_rigidbody2D.AddRelativeForce(_rigidbody2D.velocity, ForceMode2D.Impulse);
-        _movement.justGrappled = true;
+        pstate.justGrappled = true;
     }
 
     Vector2 centriod(Vector2[] points)

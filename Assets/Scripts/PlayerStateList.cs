@@ -5,18 +5,14 @@ using UnityEngine;
 public class PlayerStateList : MonoBehaviour {
 
     public bool walking;
+    [Space(5)]
     public bool interact;
     public bool interacting;
     public bool lookingRight;
     public bool jumping;
-    public bool recoilingX;
-    public bool recoilingY;
-    public bool casting;
-    public bool castReleased;
-    public bool onBench;
-    public bool atBench;
     public bool atNPC;
     public bool usingNPC;
-    //public bool 
+    public bool isGrappling;
+    public bool justGrappled;
 
 }

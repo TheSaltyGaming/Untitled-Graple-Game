@@ -476,7 +476,7 @@ GameObject:
   - component: {fileID: 446630642}
   m_Layer: 7
   m_Name: Spikes
-  m_TagString: Untagged
+  m_TagString: Death
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -47228,7 +47228,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7d1f5b995e81384c85a77c2fddda192, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 74d60b7ccd881814d83d5b11a25d95df, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -47299,8 +47299,9 @@ MonoBehaviour:
   grappleMask:
     serializedVersion: 2
     m_Bits: 64
-  moveSpeed: 0.4
+  moveSpeed: 1
   grappleLength: 20
+  grappleSpeedDivide: 2
   maxPoints: 2
 --- !u!114 &4384306435859099045
 MonoBehaviour:
@@ -47336,7 +47337,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 6
   m_Material: {fileID: 6200000, guid: aeaaed2847cbf5940bd8001acf477639, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -47355,8 +47356,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.003757298, y: -0.018597722}
-  m_Size: {x: 0.9156982, y: 1.9601157}
+  m_Offset: {x: 0.0022748709, y: -0.0065335035}
+  m_Size: {x: 1.8928933, y: 2.901119}
   m_Direction: 0
 --- !u!114 &4384306435859099048
 MonoBehaviour:
@@ -47396,16 +47397,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pState: {fileID: 4384306435859099052}
-  walkSpeed: 25
-  jumpSpeed: 45
+  walkSpeed: 20
+  jumpSpeed: 23
   fallSpeed: 45
   jumpSteps: 20
   jumpThreshold: 7
-  recoilXSteps: 4
-  recoilYSteps: 10
-  recoilXSpeed: 45
-  recoilYSpeed: 45
-  roofTransform: {fileID: 0}
+  roofTransform: {fileID: 1903090654}
   roofCheckY: 0.2
   roofCheckX: 1
 --- !u!114 &4384306435859099050
@@ -47466,14 +47463,10 @@ MonoBehaviour:
   interacting: 0
   lookingRight: 0
   jumping: 0
-  recoilingX: 0
-  recoilingY: 0
-  casting: 0
-  castReleased: 0
-  onBench: 0
-  atBench: 0
   atNPC: 0
   usingNPC: 0
+  isGrappling: 0
+  justGrappled: 0
 --- !u!120 &4384306435875464456
 LineRenderer:
   m_ObjectHideFlags: 0

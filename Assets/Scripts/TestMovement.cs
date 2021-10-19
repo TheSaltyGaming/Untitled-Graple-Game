@@ -19,14 +19,7 @@ public class TestMovement : MonoBehaviour
     [SerializeField] int jumpSteps = 20;
     [SerializeField] int jumpThreshold = 7;
     [Space(5)]
-    
-    [Header("Recoil")]
-    [SerializeField] int recoilXSteps = 4;
-    [SerializeField] int recoilYSteps = 10;
-    [SerializeField] float recoilXSpeed = 45;
-    [SerializeField] float recoilYSpeed = 45;
-    [Space(5)]
-    
+
     [Header("Roof Checking")]
     [SerializeField] Transform roofTransform; //This is supposed to be a transform childed to the player just above their collider.
     [SerializeField] float roofCheckY = 0.2f;
@@ -61,46 +54,15 @@ public class TestMovement : MonoBehaviour
     void Update () {
         Flip();
         Walk(xAxis);
-        Recoil();
         GetInputs();
         Jump();
     }
-    
-    void FixedUpdate()
-    {
-        if (pState.recoilingX == true && stepsXRecoiled < recoilXSteps)
-        {
-            stepsXRecoiled++;
-        }
-        else
-        {
-            StopRecoilX();
-        }
-        if (pState.recoilingY == true && stepsYRecoiled < recoilYSteps)
-        {
-            stepsYRecoiled++;
-        }
-        else
-        {
-            StopRecoilY();
-        }
-        if (_collision.IsGrounded())
-        {
-            StopRecoilY();
-        }
- 
-        //Jump();
-    }
-
     void Jump()
     {
-        print("jump");
         if (pState.jumping)
         {
-            print("jumpisbringregistered");
             if (stepsJumped < jumpSteps && !Roofed())
             {
-                print("this IS IN SANE");
                 rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
                 stepsJumped++;
             }
@@ -110,73 +72,39 @@ public class TestMovement : MonoBehaviour
             }
         }
     }
-    
     void Walk(float MoveDirection)
     {
         //Rigidbody2D rigidbody2D = rb;
         //float x = MoveDirection * walkSpeed;
         //Vector2 velocity = rb.velocity;
         //rigidbody2D.velocity = new Vector2(x, velocity.y);
-        if (!pState.recoilingX)
+        if (!pState.justGrappled && !pState.isGrappling)
         {
-            rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);
- 
-            if (Mathf.Abs(rb.velocity.x) > 0)
-            {
+            print("STOPTHEFUCK");
+            rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);   
+        }
+
+        if (Mathf.Abs(rb.velocity.x) > 0)
+        {
                 pState.walking = true;
-            }
-            else
-            {
-                pState.walking = false;
-            }
-            if (xAxis > 0)
-            {
-                pState.lookingRight = true;
-            }
-            else if (xAxis < 0)
-            {
-                pState.lookingRight = false;
-            }
- 
-            //anim.SetBool("Walking", pState.walking);
-        }
- 
-    }
-    
-    void Recoil()
-    {
-        //since this is run after Walk, it takes priority, and effects momentum properly.
-        if (pState.recoilingX)
-        {
-            if (pState.lookingRight)
-            {
-                rb.velocity = new Vector2(-recoilXSpeed, 0);
-            }
-            else
-            {
-                rb.velocity = new Vector2(recoilXSpeed, 0);
-            }
-        }
-        if (pState.recoilingY)
-        {
-            if (yAxis < 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, recoilYSpeed);
-                rb.gravityScale = 0;
-            }
-            else
-            {
-                rb.velocity = new Vector2(rb.velocity.x, -recoilYSpeed);
-                rb.gravityScale = 0;
-            }
- 
         }
         else
         {
-            rb.gravityScale = grabity;
+                pState.walking = false;
         }
-    }
+        if (xAxis > 0)
+        {
+            pState.lookingRight = true;
+        }
+        else if (xAxis < 0)
+        {
+            pState.lookingRight = false;
+        }
  
+            //anim.SetBool("Walking", pState.walking);
+
+    }
+
     void Flip()
     {
         if (xAxis > 0)
@@ -203,19 +131,7 @@ public class TestMovement : MonoBehaviour
         stepsJumped = 0;
         pState.jumping = false;
     }
- 
-    void StopRecoilX()
-    {
-        stepsXRecoiled = 0;
-        pState.recoilingX = false;
-    }
- 
-    void StopRecoilY()
-    {
-        stepsYRecoiled = 0;
-        pState.recoilingY = false;
-    }
-    
+
     public bool Roofed()
     {
         //This does the same thing as grounded but checks if the players head is hitting the roof instead.
@@ -261,10 +177,8 @@ public class TestMovement : MonoBehaviour
         {
             xAxis = 0;
         }
-        print("this is testing but running");
         if (_input.jump && _collision.IsGrounded())
         {
-            print("wtd is happening");
             pState.jumping = true;
         }
 
