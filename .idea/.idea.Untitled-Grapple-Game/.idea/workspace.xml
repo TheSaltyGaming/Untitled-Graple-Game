@@ -4,14 +4,8 @@
     <list default="true" id="b557b6cb-063f-45bb-81bd-b306efee630f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Untitled-Grapple-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Untitled-Grapple-Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jungle/WorldOne.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jungle/WorldOne.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Collision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Collision.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Grapple.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Grapple.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerStateList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerStateList.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/TestMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TestMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe12.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe13.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/shadercompiler-UnityShaderCompiler.exe14.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +21,7 @@
     <setting file="file://$PROJECT_DIR$/../Early projects/2D/Programming basics/Assets/Scripts/PlayerInteraction.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Dinnerdog Interactive/Assets/Scripts/PlayerInput.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Downloads/2DPlatformer_Tavle_Base-main/Assets/Scripts/PlayerCollision.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.tilemap@1.0.0/Editor/GridPaintPaletteClipboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Dinnerdog Interactive/Assets/Scripts/PlayerMovement.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Collision.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Input.cs" root0="FORCE_HIGHLIGHTING" />
@@ -85,7 +80,7 @@
       <workItem from="1634631341489" duration="72000" />
       <workItem from="1634631503636" duration="1515000" />
       <workItem from="1636364642875" duration="4538000" />
-      <workItem from="1636398369008" duration="2823000" />
+      <workItem from="1636398369008" duration="6043000" />
     </task>
     <servers />
   </component>

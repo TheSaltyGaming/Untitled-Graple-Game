@@ -54,7 +54,6 @@ public class Grapple : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, grappleLength, grappleMask);
             if (hit.collider != null)
             {
-                print("hit collider is not null");
                 Vector2 hitPoint = hit.point;
                 points.Add(hitPoint);
 

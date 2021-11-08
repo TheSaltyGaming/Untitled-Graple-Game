@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,8 @@ public class TestMovement : MonoBehaviour
     [SerializeField] float fallSpeed = 45;
     [SerializeField] int jumpSteps = 20;
     [SerializeField] int jumpThreshold = 7;
+    [SerializeField] private float maxVelocityPos = 55f;
+    [SerializeField] private float maxVelocityNeg = -55f;
     [Space(5)]
 
     [Header("Roof Checking")]
@@ -58,6 +61,12 @@ public class TestMovement : MonoBehaviour
         GetInputs();
         Jump();
         enableMovement();
+        //print("y = " + rb.velocity.y + "   x = " + rb.velocity.x);
+    }
+
+    private void FixedUpdate()
+    {
+        SetMaxVelocity();
     }
 
     void enableMovement()
@@ -170,13 +179,39 @@ public class TestMovement : MonoBehaviour
             return false;
         }
     }
+    
+    private void SetMaxVelocity()
+    {
+        if (_collision.IsGrounded()) return;
+        if (rb.velocity.y < maxVelocityNeg)
+        {
+            print("maxvelocity triggered");
+            rb.velocity = new Vector2(rb.velocity.x, maxVelocityNeg);
+        }
+        if (rb.velocity.x < maxVelocityNeg)
+        {
+            print("maxvelocity triggered");
+            rb.velocity = new Vector2(maxVelocityNeg, rb.velocity.y);
+        }
+        
+        
+        if (rb.velocity.y > maxVelocityPos)
+        {
+            print("maxvelocity triggered");
+            rb.velocity = new Vector2(rb.velocity.x, maxVelocityPos);
+        }
+        if (rb.velocity.x > maxVelocityPos)
+        {
+            print("maxvelocity triggered");
+            rb.velocity = new Vector2(maxVelocityPos, rb.velocity.y);
+        }
+    }
 
     void GetInputs()
     {
         yAxis = _input.moveVector.y;
         xAxis = _input.moveVector.x;
- 
-        //This is essentially just sensitivity.
+        
         if (yAxis > 0.25)
         {
             yAxis = 1;
