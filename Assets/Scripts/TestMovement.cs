@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(PlayerStateList))]
 [RequireComponent(typeof(Input))]
@@ -21,9 +22,9 @@ public class TestMovement : MonoBehaviour
     [Space(5)]
 
     [Header("Roof Checking")]
-    [SerializeField] Transform roofTransform; //This is supposed to be a transform childed to the player just above their collider.
+    [SerializeField] Transform roofTransform; //Empty game object attatched to player. Place right above player
     [SerializeField] float roofCheckY = 0.2f;
-    [SerializeField] float roofCheckX = 1; // You probably want this to be the same as groundCheckX
+    [SerializeField] float roofCheckX = 1; // Same as groundCheckX
     [Space(5)]
     
     
@@ -56,6 +57,19 @@ public class TestMovement : MonoBehaviour
         Walk(xAxis);
         GetInputs();
         Jump();
+        enableMovement();
+    }
+
+    void enableMovement()
+    {
+        if (pState.justGrappled)
+        {
+            if (Keyboard.current.aKey.wasPressedThisFrame || Keyboard.current.dKey.wasPressedThisFrame)
+            {
+                pState.initiateMovement = true;
+                pState.justGrappled = false;
+            }
+        }
     }
     void Jump()
     {
@@ -78,12 +92,23 @@ public class TestMovement : MonoBehaviour
         //float x = MoveDirection * walkSpeed;
         //Vector2 velocity = rb.velocity;
         //rigidbody2D.velocity = new Vector2(x, velocity.y);
-        if (!pState.justGrappled && !pState.isGrappling)
+        //!pState.justGrappled &&
+        if (!pState.isGrappling && !pState.justGrappled && pState.initiateMovement)
         {
-            print("STOPTHEFUCK");
-            rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);   
+            print("movement enabled");
+            rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);
+            //rb.AddForce(MoveDirection * walkSpeed * Vector3.right * Time.deltaTime, ForceMode2D.Impulse);
         }
-
+// this was a test to fix movement. not active atm
+        /*if (pState.lookingRight && MoveDirection == -1)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        if (!pState.lookingRight && MoveDirection == 1)
+        {
+            rb.velocity = Vector2.zero;
+        }
+        */
         if (Mathf.Abs(rb.velocity.x) > 0)
         {
                 pState.walking = true;
@@ -119,7 +144,7 @@ public class TestMovement : MonoBehaviour
     
     void StopJumpQuick()
     {
-        //Stops The player jump immediately, causing them to start falling as soon as the button is released.
+        //Stop player jump immediatley
         stepsJumped = 0;
         pState.jumping = false;
         rb.velocity = new Vector2(rb.velocity.x, 0);

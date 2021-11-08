@@ -40,6 +40,7 @@ public class Grapple : MonoBehaviour
         if (_collision.IsGrounded())
         {
             pstate.justGrappled = false;
+            pstate.initiateMovement = true;
         }
         
         _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
@@ -67,6 +68,7 @@ public class Grapple : MonoBehaviour
         if (points.Count > 0)
         {
             pstate.isGrappling = true;
+            pstate.initiateMovement = false;
             Vector2 moveTo = centriod(points.ToArray());
             //_rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
             Vector2 rotation = (moveTo - (Vector2)transform.position).normalized;

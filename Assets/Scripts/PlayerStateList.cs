@@ -10,9 +10,8 @@ public class PlayerStateList : MonoBehaviour {
     public bool interacting;
     public bool lookingRight;
     public bool jumping;
-    public bool atNPC;
-    public bool usingNPC;
     public bool isGrappling;
     public bool justGrappled;
+    public bool initiateMovement;
 
 }

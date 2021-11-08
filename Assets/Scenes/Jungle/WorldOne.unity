@@ -3092,7 +3092,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7808219, y: 1}
+    m_SensorSize: {x: 1.7779204, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -47397,7 +47397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pState: {fileID: 4384306435859099052}
-  walkSpeed: 20
+  walkSpeed: 25
   jumpSpeed: 23
   fallSpeed: 45
   jumpSteps: 20
@@ -47463,10 +47463,9 @@ MonoBehaviour:
   interacting: 0
   lookingRight: 0
   jumping: 0
-  atNPC: 0
-  usingNPC: 0
   isGrappling: 0
   justGrappled: 0
+  initiateMovement: 0
 --- !u!120 &4384306435875464456
 LineRenderer:
   m_ObjectHideFlags: 0
