@@ -96,6 +96,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -676,6 +677,31 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Tilemap for groundstuffs_21: 7758753945804492647
+      Tilemap for groundstuffs_11: 4730646558361322682
+      Tilemap for groundstuffs_17: 1278288458303498310
+      Tilemap for groundstuffs_0: 8434195533675495680
+      Tilemap for groundstuffs_12: -3529457313027237297
+      Tilemap for groundstuffs_19: 5455555246360784497
+      Tilemap for groundstuffs_6: -685480178752816242
+      Tilemap for groundstuffs_22: -7449447626202141128
+      Tilemap for groundstuffs_2: -8069596675042922703
+      Tilemap for groundstuffs_9: 55096452537403847
+      Tilemap for groundstuffs_16: 1294071419357814522
+      Tilemap for groundstuffs_3: -4201783352180177869
+      Tilemap for groundstuffs_4: 4556125400069865556
+      Tilemap for groundstuffs_5: 2225527841702796804
+      Tilemap for groundstuffs_10: 2102750988194382605
+      Tilemap for groundstuffs_7: -5846551044204479438
+      Tilemap for groundstuffs_8: -6246635407396670798
+      Tilemap for groundstuffs_14: -8172721068178870857
+      Tilemap for groundstuffs_18: -5712199531129512310
+      Tilemap for groundstuffs_20: -4550393435126157725
+      Tilemap for groundstuffs_15: 4852228865122043719
+      Tilemap for groundstuffs_1: -2775581736652783655
+      Tilemap for groundstuffs_23: 7755846988579144439
+      Tilemap for groundstuffs_13: -278020322409990769
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

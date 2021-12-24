@@ -168,6 +168,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1252,6 +1253,55 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Details_midground_43: -2253208312288898476
+      Details_midground_8: -2493919808439948378
+      Details_midground_12: -1477258928943739532
+      Details_midground_35: 8967956637614427568
+      Details_midground_13: -7497535744706731245
+      Details_midground_31: 2653340188517172257
+      Details_midground_46: 5605870686383641609
+      Details_midground_5: 8073709825099431
+      Details_midground_26: 5247636908183033338
+      Details_midground_33: -1936811741210838205
+      Details_midground_44: -4349348690624213325
+      Details_midground_27: 5375003062587453738
+      Details_midground_7: -2739135611194356826
+      Details_midground_20: 8845877609862469007
+      Details_midground_10: -4313372717821168512
+      Details_midground_39: -9027321700049566473
+      Details_midground_24: 4590960867181193229
+      Details_midground_42: 1702616557383674000
+      Details_midground_22: -8241335555751495289
+      Details_midground_2: -7462170943574438478
+      Details_midground_14: -5099660294815442279
+      Details_midground_41: -8391194651306535311
+      Details_midground_6: 3915162822769185598
+      Details_midground_17: 5078721418416787079
+      Details_midground_32: -8499071023716056916
+      Details_midground_3: 6859808258049761994
+      Details_midground_34: -6138389567490130765
+      Details_midground_18: 397480051706105117
+      Details_midground_19: -5385666768257846087
+      Details_midground_30: -6389564969939896128
+      Details_midground_37: -6300013507708888342
+      Details_midground_38: -6450634171959931583
+      Details_midground_28: -1662714733137269514
+      Details_midground_16: 2290294259731305222
+      Details_midground_36: 4405867298763090296
+      Details_midground_45: -847372073668211768
+      Details_midground_9: -8267515736319941902
+      Details_midground_15: 6741652971287760162
+      Details_midground_0: 8064766815217207225
+      Details_midground_4: -7015601723818176076
+      Details_midground_1: -751575584461868325
+      Details_midground_11: 3565254467631338132
+      Details_midground_47: 8736261230939330163
+      Details_midground_21: -7674876405076843570
+      Details_midground_23: 5810952667919386324
+      Details_midground_25: -348412456767543574
+      Details_midground_40: -732369741592864167
+      Details_midground_29: -4818706227014955274
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -210,6 +210,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -1588,6 +1589,69 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Spikes_tilemap_59: 4123170761126671974
+      Spikes_tilemap_60: -2333489300186141084
+      Spikes_tilemap_6: 3609964857939533622
+      Spikes_tilemap_54: -3664157791793901552
+      Spikes_tilemap_7: 6998080448684791793
+      Spikes_tilemap_47: 2618743865465650189
+      Spikes_tilemap_21: 4584785768465725394
+      Spikes_tilemap_16: -7785780420427514804
+      Spikes_tilemap_43: 4545611226940021349
+      Spikes_tilemap_50: 4277006358824339826
+      Spikes_tilemap_2: -8362054215486062991
+      Spikes_tilemap_18: 153268227198150954
+      Spikes_tilemap_20: -4569615443930705261
+      Spikes_tilemap_58: -6504641951457424162
+      Spikes_tilemap_32: -6015452313730104951
+      Spikes_tilemap_38: 7493127170572210081
+      Spikes_tilemap_61: -1031237827781063892
+      Spikes_tilemap_4: 8474367985042441033
+      Spikes_tilemap_48: 4223457805864825465
+      Spikes_tilemap_51: 8716736987058388643
+      Spikes_tilemap_40: -6684634294604573407
+      Spikes_tilemap_28: 1489239604788980855
+      Spikes_tilemap_14: 4608875627681214995
+      Spikes_tilemap_15: 5364150882899702825
+      Spikes_tilemap_8: 7162788513316933443
+      Spikes_tilemap_25: -7891574874549179443
+      Spikes_tilemap_10: 9009547726689256958
+      Spikes_tilemap_11: -2524663340388201682
+      Spikes_tilemap_31: 7077626716765660675
+      Spikes_tilemap_34: -4941980572997238062
+      Spikes_tilemap_0: 9141805840989893083
+      Spikes_tilemap_42: 3854031153333062223
+      Spikes_tilemap_5: 5353815510265066206
+      Spikes_tilemap_33: -2421563302000037757
+      Spikes_tilemap_1: 2002519177966772748
+      Spikes_tilemap_17: -9067353649035584752
+      Spikes_tilemap_53: 3057989215612847667
+      Spikes_tilemap_56: 2421418433023396982
+      Spikes_tilemap_57: -2016488053509122332
+      Spikes_tilemap_46: 5593114969881871997
+      Spikes_tilemap_52: -5958548468869992644
+      Spikes_tilemap_41: 6757365453123766927
+      Spikes_tilemap_35: 3632497012867589270
+      Spikes_tilemap_26: -2603373200369660508
+      Spikes_tilemap_3: -4149754766986868840
+      Spikes_tilemap_39: -8279383641431202572
+      Spikes_tilemap_27: 8510314370420207070
+      Spikes_tilemap_45: -2378343113478363247
+      Spikes_tilemap_13: 7238823981834053229
+      Spikes_tilemap_29: -8550529991387798849
+      Spikes_tilemap_30: 5918896958524676173
+      Spikes_tilemap_24: 154018355926440614
+      Spikes_tilemap_36: -5908161956396546309
+      Spikes_tilemap_9: 6568176315990685491
+      Spikes_tilemap_55: -8917277916960273857
+      Spikes_tilemap_49: 688583418759026796
+      Spikes_tilemap_37: 6861961429610890367
+      Spikes_tilemap_22: -4771282232860344673
+      Spikes_tilemap_23: -2922415242932379122
+      Spikes_tilemap_19: 7628609327366230868
+      Spikes_tilemap_12: -3017630444010608676
+      Spikes_tilemap_44: -1070174231896781692
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
