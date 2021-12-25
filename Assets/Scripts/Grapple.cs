@@ -6,13 +6,17 @@ using UnityEngine.InputSystem;
 
 public class Grapple : MonoBehaviour
 {
+    // Set to main camera
     public Camera cam;
+    // Set to "Line"
     public LineRenderer lr;
+    // What should grapple collide with. Set to ground
     public LayerMask grappleMask;
     public float moveSpeed = 2;
     public float grappleLength = 5;
     [SerializeField] private float grappleSpeedDivide = 2;
     [Min(1)]
+    // Amount of points the grapple hook can have
     public int maxPoints = 3;
 
     private Input _input;
@@ -44,13 +48,14 @@ public class Grapple : MonoBehaviour
         }
         
         _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
-        print("yo i can read this btw");
+        
+        // Initiates grapple
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             print("grapple registered");
             Vector2 mousePos = cam.ScreenToWorldPoint(_mousePos);
             Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
-
+            
             RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, grappleLength, grappleMask);
             if (hit.collider != null)
             {
@@ -64,9 +69,11 @@ public class Grapple : MonoBehaviour
             }
         }
 
+        // If grappling
         if (points.Count > 0)
         {
             pstate.isGrappling = true;
+            // Disables movement to prevent X velocity from being set to 0
             pstate.initiateMovement = false;
             Vector2 moveTo = centriod(points.ToArray());
             //_rigidbody2D.MovePosition(Vector2.MoveTowards((Vector2)transform.position, moveTo, Time.deltaTime * moveSpeed));
@@ -97,6 +104,8 @@ public class Grapple : MonoBehaviour
         lr.positionCount = 0;
         points.Clear();
         //_rigidbody2D.AddRelativeForce(_rigidbody2D.velocity, ForceMode2D.Impulse);
+        
+        //JustGrappled allows for the movement system to be enabled on A or D press
         pstate.justGrappled = true;
     }
 

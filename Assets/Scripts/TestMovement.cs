@@ -69,6 +69,7 @@ public class TestMovement : MonoBehaviour
         SetMaxVelocity();
     }
 
+    // Enables movement after grapple 
     void enableMovement()
     {
         if (pState.justGrappled)
@@ -102,13 +103,13 @@ public class TestMovement : MonoBehaviour
         //Vector2 velocity = rb.velocity;
         //rigidbody2D.velocity = new Vector2(x, velocity.y);
         //!pState.justGrappled &&
+        
         if (!pState.isGrappling && !pState.justGrappled && pState.initiateMovement)
         {
-            print("movement enabled");
             rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);
             //rb.AddForce(MoveDirection * walkSpeed * Vector3.right * Time.deltaTime, ForceMode2D.Impulse);
         }
-// this was a test to fix movement. not active atm
+// this was a test to fix movement. not active. Probably will not use since movement is working as it should right now
         /*if (pState.lookingRight && MoveDirection == -1)
         {
             rb.velocity = Vector2.zero;
@@ -139,6 +140,7 @@ public class TestMovement : MonoBehaviour
 
     }
 
+    //Flips playermodel
     void Flip()
     {
         if (xAxis > 0)
