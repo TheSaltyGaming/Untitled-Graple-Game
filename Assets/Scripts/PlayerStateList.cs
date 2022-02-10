@@ -13,5 +13,8 @@ public class PlayerStateList : MonoBehaviour {
     public bool isGrappling;
     public bool justGrappled;
     public bool initiateMovement;
+    public bool canGrapple;
+    public bool isDashing;
+    public bool canDash;
 
 }

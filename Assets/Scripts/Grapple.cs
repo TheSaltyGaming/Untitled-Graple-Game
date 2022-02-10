@@ -20,19 +20,17 @@ public class Grapple : MonoBehaviour
     public int maxPoints = 3;
 
     private Input _input;
-    private Movement _movement;
     private Collision _collision;
     private PlayerStateList pstate; 
 
     private Vector2 _mousePos;
     
     private Rigidbody2D _rigidbody2D;
-    private List<Vector2> points = new List<Vector2>();
+    public List<Vector2> points = new List<Vector2>();
 
     private void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _movement = GetComponent<Movement>();
         _collision = GetComponent<Collision>();
         pstate = GetComponent<PlayerStateList>();
         lr.positionCount = 0;
@@ -45,14 +43,16 @@ public class Grapple : MonoBehaviour
         {
             pstate.justGrappled = false;
             pstate.initiateMovement = true;
+            pstate.canGrapple = true;
         }
         
         _mousePos = new Vector2(Mouse.current.position.x.ReadValue(), Mouse.current.position.y.ReadValue());
         
         // Initiates grapple
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && pstate.canGrapple)
         {
             print("grapple registered");
+            pstate.canGrapple = false;
             Vector2 mousePos = cam.ScreenToWorldPoint(_mousePos);
             Vector2 direction = (mousePos - (Vector2)transform.position).normalized;
             
@@ -132,4 +132,5 @@ public class Grapple : MonoBehaviour
             Gizmos.DrawLine(transform.position, point);
         }
     }
+    
 }

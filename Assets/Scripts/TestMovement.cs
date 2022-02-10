@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,7 @@ using UnityEngine.InputSystem;
 public class TestMovement : MonoBehaviour
 {
     public PlayerStateList pState;
+    private Grapple _grapple;
     
     [Header("X Axis Movement")]
     [SerializeField] float walkSpeed = 25f;
@@ -30,29 +32,35 @@ public class TestMovement : MonoBehaviour
     [SerializeField] float roofCheckX = 1; // Same as groundCheckX
     [Space(5)]
     
+    //Dashing
+    [Header("Dashing")]
+    [SerializeField] private float dashForce = 6f;
+    public float cooldown = 0.7f;
+    
+    //TESTING AREA
+
+    public TMP_Text velocityTest;
+    
     
     float xAxis;
     float yAxis;
     int stepsXRecoiled;
     int stepsYRecoiled;
     int stepsJumped = 0;
-    float grabity;
     Rigidbody2D rb;
 
     private Input _input;
     private Collision _collision;
+
+    private Vector2 lateVelocity;
     
     void Start () {
-        if(pState == null)
-        {
-            pState = GetComponent<PlayerStateList>();
-        }
- 
+        _grapple = GetComponent<Grapple>();
+        pState = GetComponent<PlayerStateList>();
         rb = GetComponent<Rigidbody2D>();
         _input = GetComponent<Input>();
         _collision = GetComponent<Collision>();
- 
-        grabity = rb.gravityScale;
+        pState.canDash = true;
     }
     
     void Update () {
@@ -61,7 +69,18 @@ public class TestMovement : MonoBehaviour
         GetInputs();
         Jump();
         enableMovement();
-        //print("y = " + rb.velocity.y + "   x = " + rb.velocity.x);
+
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame && pState.canDash)
+        {
+            StartCoroutine(Dash());
+        }
+        //print("Player velocity: "+ rb.velocity);
+        velocityTest.text = "Player velocity: " + rb.velocity;
+    }
+
+    private void LateUpdate()
+    {
+        lateVelocity = rb.velocity;
     }
 
     private void FixedUpdate()
@@ -98,27 +117,11 @@ public class TestMovement : MonoBehaviour
     }
     void Walk(float MoveDirection)
     {
-        //Rigidbody2D rigidbody2D = rb;
-        //float x = MoveDirection * walkSpeed;
-        //Vector2 velocity = rb.velocity;
-        //rigidbody2D.velocity = new Vector2(x, velocity.y);
-        //!pState.justGrappled &&
-        
         if (!pState.isGrappling && !pState.justGrappled && pState.initiateMovement)
         {
             rb.velocity = new Vector2(MoveDirection * walkSpeed, rb.velocity.y);
-            //rb.AddForce(MoveDirection * walkSpeed * Vector3.right * Time.deltaTime, ForceMode2D.Impulse);
         }
-// this was a test to fix movement. not active. Probably will not use since movement is working as it should right now
-        /*if (pState.lookingRight && MoveDirection == -1)
-        {
-            rb.velocity = Vector2.zero;
-        }
-        if (!pState.lookingRight && MoveDirection == 1)
-        {
-            rb.velocity = Vector2.zero;
-        }
-        */
+        
         if (Mathf.Abs(rb.velocity.x) > 0)
         {
                 pState.walking = true;
@@ -135,8 +138,6 @@ public class TestMovement : MonoBehaviour
         {
             pState.lookingRight = false;
         }
- 
-            //anim.SetBool("Walking", pState.walking);
 
     }
 
@@ -168,6 +169,7 @@ public class TestMovement : MonoBehaviour
         pState.jumping = false;
     }
 
+    //Roof check
     public bool Roofed()
     {
         //This does the same thing as grounded but checks if the players head is hitting the roof instead.
@@ -254,4 +256,66 @@ public class TestMovement : MonoBehaviour
         }
     }
     
+    private IEnumerator Dash()
+    {
+        print("Dash registered");
+        pState.isDashing = true;
+        pState.initiateMovement = false;
+        pState.justGrappled = true;
+        if (_input.moveVector.magnitude > 1)
+        {
+            _input.moveVector = _input.moveVector.normalized;
+        }
+        rb.velocity += _input.moveVector * dashForce;
+        print(rb.velocity + " Is the current dash velocity");
+        yield return new WaitForSeconds(0.3f);
+        pState.isDashing = false;
+        StartCoroutine(DashCooldown());
+        StartCoroutine(ReduceDashSpeed());
+    }
+    
+    //Reduce dash speed after grappling
+    private IEnumerator ReduceDashSpeed()
+    {
+        print("Should reduce maybe");
+        while ((rb.velocity.magnitude/2) > 28)
+        {
+            print("Reducing dash speed now");
+            //This only cuts X speed, but it might work for now
+            //rb.velocity -= new Vector2((rb.velocity.x - 6) * Time.deltaTime, rb.velocity.y);
+            
+            rb.velocity -= new Vector2((rb.velocity.x - 3) * Time.deltaTime, rb.velocity.y -1 *Time.deltaTime);
+        }
+        yield return null;
+    }
+
+    private IEnumerator DashCooldown()
+    {
+        pState.canDash = false;
+        yield return new WaitForSeconds(cooldown);
+        pState.canDash = true;
+    }
+
+    public void BounceBack()
+    {
+        rb.velocity = Vector2.zero;
+        pState.justGrappled = true;
+        pState.initiateMovement = false;
+        rb.velocity = -lateVelocity * 2;
+    } 
+
+    public void TestBounce(Collision2D bounceobject)
+    {
+        pState.justGrappled = true;
+        pState.initiateMovement = false;
+        
+        var heading = bounceobject.transform.position - transform.position;
+        var distance = heading.magnitude;
+        var _direction = heading / distance;
+        _grapple.lr.positionCount = 0;
+        _grapple.points.Clear();
+        rb.velocity = Vector2.zero;
+        rb.velocity = _direction * -38;
+        //RaycastHit2D hit = Physics2D.Raycast(bounceobject.transform.position, transform.position);
+    }
 }
