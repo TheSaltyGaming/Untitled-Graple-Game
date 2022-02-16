@@ -296,17 +296,20 @@ public class TestMovement : MonoBehaviour
         pState.canDash = true;
     }
 
-    public void BounceBack()
+    public void BounceUp()
     {
+        print("BOUNCR UP TRIGGERED");
         rb.velocity = Vector2.zero;
         pState.justGrappled = true;
         pState.initiateMovement = false;
-        rb.velocity = -lateVelocity * 2;
-    } 
+        rb.velocity += Vector2.up * 35;
+    }
+    
 
     public void TestBounce(Collision2D bounceobject)
     {
-        pState.justGrappled = true;
+        pState.justGrappled = false;
+        pState.canGrapple = true;
         pState.initiateMovement = false;
         
         var heading = bounceobject.transform.position - transform.position;
