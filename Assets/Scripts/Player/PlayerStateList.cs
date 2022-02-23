@@ -16,5 +16,6 @@ public class PlayerStateList : MonoBehaviour {
     public bool canGrapple;
     public bool isDashing;
     public bool canDash;
+    public bool isClouded;
 
 }

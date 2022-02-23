@@ -14,6 +14,7 @@ public class TestMovement : MonoBehaviour
     
     [Header("X Axis Movement")]
     [SerializeField] float walkSpeed = 25f;
+    
  
     [Space(5)]
  
@@ -76,6 +77,7 @@ public class TestMovement : MonoBehaviour
         }
         //print("Player velocity: "+ rb.velocity);
         velocityTest.text = "Player velocity: " + rb.velocity;
+        
     }
 
     private void LateUpdate()

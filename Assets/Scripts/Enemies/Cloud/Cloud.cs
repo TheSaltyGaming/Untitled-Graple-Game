@@ -46,27 +46,29 @@ public class Cloud : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             var rb = other.gameObject.GetComponent<Rigidbody2D>();
+            var pState = other.gameObject.GetComponent<PlayerStateList>();
             print("Sustain Trigger");
-            if (!other.gameObject.GetComponent<PlayerStateList>().isGrappling)
+            if (!pState.isGrappling)
             {
-                other.gameObject.GetComponent<PlayerStateList>().initiateMovement = false;
-                other.gameObject.GetComponent<PlayerStateList>().canGrapple = true;
+                pState.initiateMovement = false;
+                pState.canGrapple = true;
                 //rb.velocity = Vector2.zero;
                 rb.gravityScale = 6;
 
                 Vector2 cloudCenter = transform.GetChild(0).position;
 
-                rb.MovePosition(Vector2.MoveTowards((Vector2)transform.position, cloudCenter, Time.deltaTime * 0.000002f));
-
+                var newpos = Vector2.MoveTowards((Vector2) transform.position, cloudCenter, 0.00014f);
+                
+                rb.MovePosition(newpos);
+                //rb.velocity -= Vector2.MoveTowards(transform.position, cloudCenter, 0.002f);
                 //this works if we set a point and keep moving the player even if they leave the trigger,
                 //but that means we need "public gameObject player"
                 //Vector2 rotation = (moveTo - (Vector2)transform.position).normalized;
                 //rb.AddForce(rotation / 2, ForceMode2D.Impulse);
-                
+
             }
             else
             {
-                //rb.constraints = ~RigidbodyConstraints2D.FreezePositionY;
                 other.gameObject.GetComponent<PlayerStateList>().initiateMovement = false;
                 rb.gravityScale = 6;
             }
