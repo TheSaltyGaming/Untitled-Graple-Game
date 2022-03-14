@@ -54,9 +54,10 @@ public class TestCloud : MonoBehaviour
             if (_pState.isClouded && !_pState.isGrappling)
             {
                 StuckInCloud();
+                _pState.canGrapple = true;
             }
         }
-
+        
     }
 
     public void StuckInCloud()

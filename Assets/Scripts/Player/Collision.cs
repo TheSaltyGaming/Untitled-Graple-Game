@@ -14,9 +14,15 @@ public class Collision : MonoBehaviour
     private Vector2 dir;
     
     Rigidbody2D rb;
+    
+    
+    //TEMPORARY FOR ANIMATIONS RIGHT NOW
+
+    private Animator _animator;
 
     private void Start()
     {
+        _animator = GetComponent<Animator>();
         _movement = GetComponent<TestMovement>();
     }
 
@@ -25,11 +31,11 @@ public class Collision : MonoBehaviour
         if (other.CompareTag("Death"))
         {
             print("Level1");
-            RestartScene();
+            _animator.Play("TestPlayerDeath");
         }
     }
 
-    private void RestartScene()
+    public void RestartScene()
     {
         //SceneManager.LoadScene("SampleScene");
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

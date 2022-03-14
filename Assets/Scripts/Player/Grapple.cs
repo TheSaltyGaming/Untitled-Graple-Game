@@ -51,6 +51,10 @@ public class Grapple : MonoBehaviour
         // Initiates grapple
         if (Mouse.current.leftButton.wasPressedThisFrame && pstate.canGrapple)
         {
+            if (pstate.isClouded)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
+            }
             print("grapple registered");
             pstate.canGrapple = false;
             Vector2 mousePos = cam.ScreenToWorldPoint(_mousePos);
@@ -73,6 +77,9 @@ public class Grapple : MonoBehaviour
         if (points.Count > 0)
         {
             pstate.isGrappling = true;
+
+            _rigidbody2D.gravityScale = 2;
+            
             // Disables movement to prevent X velocity from being set to 0
             pstate.initiateMovement = false;
             Vector2 moveTo = centriod(points.ToArray());
@@ -91,6 +98,7 @@ public class Grapple : MonoBehaviour
         else
         {
             pstate.isGrappling = false;
+            _rigidbody2D.gravityScale = 6;
         }
 
         if(Keyboard.current.spaceKey.wasPressedThisFrame && pstate.isGrappling)

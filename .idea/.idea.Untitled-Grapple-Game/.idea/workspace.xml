@@ -4,11 +4,9 @@
     <list default="true" id="b557b6cb-063f-45bb-81bd-b306efee630f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Untitled-Grapple-Game/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Untitled-Grapple-Game/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Jungle/WorldOne.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Jungle/WorldOne.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Cloud.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Cloud.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStateList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/PlayerStateList.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/TestMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/TestMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/Layouts/default-2021.dwlt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Enemies/Cloud/TestCloud.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Enemies/Cloud/TestCloud.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Collision.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Collision.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Player/Grapple.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Player/Grapple.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +97,7 @@
       <workItem from="1644916842421" duration="7618000" />
       <workItem from="1645005935374" duration="3246000" />
       <workItem from="1645262726032" duration="5953000" />
-      <workItem from="1645522327871" duration="6801000" />
+      <workItem from="1645522327871" duration="10342000" />
     </task>
     <servers />
   </component>
